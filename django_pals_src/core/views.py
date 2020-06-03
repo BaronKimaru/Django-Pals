@@ -2,18 +2,22 @@ from django.shortcuts import render, reverse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from .models import Profile, PalRequest
-
+from django.contrib.auth.decorators import login_required
+from django.views.generic.list import View, ListView
 
 User = get_user_model()
 
 # Create your views here.
-def get_users_list(request):
-    user_profiles_with_logged_in_user = Profile.objects.all()
-    user_profiles_without_logged_in_user = Profile.objects.all().exclude(user=request.user)
-    context = {
-        'user_profiles': user_profiles_without_logged_in_user 
-    }
-    return render(request, "core/home.html", context)
+
+# @login_required
+class ProfileListView(View):
+    def get(self, request, *args, **kwargs):
+        user_profiles_with_logged_in_user = Profile.objects.all()
+        user_profiles_without_logged_in_user = Profile.objects.all().exclude(user=request.user)
+        context = {
+            'user_profiles': user_profiles_without_logged_in_user 
+        }
+        return render(request, "core/home.html", context)
 
 
 def send_pal_request(request, id):
@@ -107,9 +111,10 @@ def accept_pal_request(request, id):
 
 def fetch_profile(request, slug):
     """
-        Displays the profile details: shows sent_pal_request, received_pal_request
-        if not currently_logged_in_user's page: show add pal. if add pal is clicked,
-        button should show pal_request_sent
+        NB, acts like the detail view for a profile in the list of profiles
+        Displays the profile details: shows sent_pal_request, received_pal_request & pals
+        Also, if not on currently_logged_in_user's page: show `add pal`. if `add pal` is clicked,
+        the button should show `pal_request_sent`
     """
     print(f"SLUG: {slug}")
     # profile clicked on from the list of profiles (may be currently-authenticated user or other users )

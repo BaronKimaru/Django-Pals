@@ -6,8 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "<2.3,>=2.2"
 wagtail = ">=2.5,<2.6"
+Django = "<2.3,>=2.2"
+django-allauth = "*"
 
 [requires]
 python_version = "3.6"
