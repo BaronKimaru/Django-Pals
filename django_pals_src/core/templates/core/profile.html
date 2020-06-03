@@ -39,6 +39,8 @@
     <div class="jumbotron">
       <div class="list-group">
         <!-- make sure the received request points to who its from ie received_pal_request.from_user.OTHER_DETAILS -->
+        {{ all_received_pal_requests }}
+        <!-- iterate over all the received requests -->
         {% for received_pal_request in all_received_pal_requests %}
         <a class="list-group-item list-group-item-action">
           {{ received_pal_request.from_user.username }}

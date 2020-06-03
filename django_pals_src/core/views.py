@@ -139,6 +139,7 @@ def fetch_profile(request, slug):
     all_received_pal_requests = PalRequest.objects.filter(
                                         to_user=user_currently_clicked_on                            
                                                 )
+    print(f"ALL RECEIVED: {PalRequest.objects.all()}")                                                
 
     # This section shows if the user is not the currently_logged_in_user
     # (i.e, shows when the currently logged in user clicks on another's profile)

@@ -25,8 +25,13 @@ def post_save_create_profile_receiver(sender, instance, created, *args, **kwargs
     """Once user is created, a profile will also be created"""
     if created:
         print("<< CREATING PROFILE FOR USER >>")
+        print("Instance: ", instance)
+        slug=instance
         try:
-            Profile.objects.create(user=instance)
+            profile = Profile.objects.create(user=instance)
+            profile.slug=slug
+            print('profile.slug: ', profile.slug)
+            profile.save()
         except Exception as e:
             pass
 
