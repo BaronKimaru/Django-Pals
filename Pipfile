@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 django = "<2.3,>=2.2"
-wagtail = ">=2.5,<2.6"
+wagtail = ">=2.5,<2.8"
 
 [requires]
 python_version = "3.6"
