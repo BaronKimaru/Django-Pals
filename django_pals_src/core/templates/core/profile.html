@@ -1,0 +1,100 @@
+{% extends "core/base.html" %} {% block content %}
+<main role="main" class="container">
+  <div class="starter-template">
+    <h1 class="text-center my-5">Profile</h1>
+    <h1 class="my-5">Hi, @{{ request.user }}</h1>
+    <!-- 
+      If this is the profile of the currently-logged in django user, (i.e if logged-in user == user we clicked on), 
+      show the pals, sent requests and received requests(for received requests, show Accept and ignore buttons) 
+    -->
+    {% if request.user == user_currently_clicked_on %}
+    <!-- show all friends -->
+    {{ all_pals_of_clicked_on_profile }}
+    <h1>User profile for logged in user</h1>
+    <h1>Pals of {{ request.user }}</h1>
+    <div class="jumbotron">
+      <div class="list-group">
+        {% for pal in all_pals_of_clicked_on_profile %}
+        <!-- use backward relation to get the user and detail attributes -->
+        <a class="list-group-item list-group-item-action">
+          {{ pal }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <h1>Pal Requests sent:</h1>
+    <div class="jumbotron">
+      <div class="list-group">
+        <!-- make sure the sent request points to who its to ie sent_pal_request.to_user.OTHER_DETAILS -->
+        {% for sent_pal_request in all_sent_pal_requests %}
+        <a class="list-group-item list-group-item-action">
+          {{ sent_pal_request.to_user.username }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <h1>Pal Requests received:</h1>
+    <div class="jumbotron">
+      <div class="list-group">
+        <!-- make sure the received request points to who its from ie received_pal_request.from_user.OTHER_DETAILS -->
+        {% for received_pal_request in all_received_pal_requests %}
+        <a class="list-group-item list-group-item-action">
+          {{ received_pal_request.from_user.username }}
+        </a>
+        <div>
+          <span
+            ><a
+              class="btn btn-primary"
+              href="/pal_request/accept/{{ received_pal_request.from_user.id }}"
+              >Accept</a
+            ></span
+          >
+
+          <span
+            ><a
+              class="btn btn-warning"
+              href="/pal_request/ignore/{{ received_pal_request.from_user.id }}"
+              >Ignore</a
+            ></span
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- 
+      else this profile doesnt belong to the logged-in user (just a random profile), 
+      show button `send request` & if already sent, show `request sent` 
+    -->
+    {% else %}
+    <h1>User profile for other user: {{ user_currently_clicked_on }}</h1>
+    <!-- profile is not currently-logged-in user's pal -->
+    {% if button_status == 'not_a_pal' %}
+    <p>not a pal</p>
+    <small
+      ><a
+        class="btn btn-primary"
+        href="/pal_request/send/{{ user_currently_clicked_on.id }}"
+        >Add Pal</a
+      ></small
+    >
+
+    {% elif button_status == 'pal_request_sent' %}
+
+    <small
+      ><a
+        class="btn btn-warning"
+        href="/pal_request/cancel/{{ user_currently_clicked_on.id }}"
+        >Cancel Request</a
+      ></small
+    >
+    {% endif %}
+
+    <!-- End main if -->
+    {% endif %}
+  </div>
+</main>
+<!-- /.container -->
+
+{% endblock %}
