@@ -13,3 +13,27 @@
 ![image](https://user-images.githubusercontent.com/16536231/83661428-cbd80780-a5ce-11ea-981a-56667c250d5a.png)
 
 ![image](https://user-images.githubusercontent.com/16536231/83661374-b4991a00-a5ce-11ea-8ea1-707fad03a8b9.png)
+
+![image](https://user-images.githubusercontent.com/16536231/83661679-22454600-a5cf-11ea-872b-9aab7763bd1e.png)
+
+## Revised:
+
+### Homepage
+
+![image](https://user-images.githubusercontent.com/16536231/83667259-c8e11500-a5d6-11ea-8e12-846743227568.png)
+
+### profile page for currently logged in user
+
+![image](https://user-images.githubusercontent.com/16536231/83667710-7ce2a000-a5d7-11ea-810c-409978a74107.png)
+
+### profile page for other user - not a pal and no request sent
+
+![image](https://user-images.githubusercontent.com/16536231/83667435-0d6cb080-a5d7-11ea-8d54-c93e1ef9badd.png)
+
+### profile page for other user - not a pal and a request was sent
+
+![image](https://user-images.githubusercontent.com/16536231/83667520-3725d780-a5d7-11ea-8e4e-b35aac5cddad.png)
+
+### profile page for other user - user is a pal
+
+![image](https://user-images.githubusercontent.com/16536231/83667615-5ae91d80-a5d7-11ea-8da7-70ca32e5114f.png)

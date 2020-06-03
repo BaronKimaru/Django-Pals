@@ -1,17 +1,17 @@
 {% extends "core/base.html" %} {% block content %}
 <main role="main" class="container">
   <div class="starter-template">
-    <h1 class="my-5">Hi, @{{ request.user }}</h1>
-    <h1>All Users</h1>
+    <h1 class="text-center display-2">All Users</h1>
+    <h1 class="my-5 display-4">Hi, @{{ request.user }}</h1>
     <p class="lead">
-        <ul>
-            {% for profile in user_profiles %}
-            <li class="lead">
-                <!-- profile returns self.user.username -->
-              <a href="{{profile.get_absolute_url}}">{{ profile }}</a>  
-            </li>
-            {% endfor %}
-          </ul>
+    <ul class="jumbotron">
+        {% for profile in user_profiles %}
+        <li class="lead">
+            <!-- profile returns self.user.username -->
+            <a href="{{profile.get_absolute_url}}" class="lead">{{ profile }}</a>  
+        </li>
+        {% endfor %}
+    </ul>
     </p>
   </div>
 </main>

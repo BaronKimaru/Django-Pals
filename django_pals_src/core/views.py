@@ -152,6 +152,8 @@ def fetch_profile(request, slug):
         print("Count: ",PalRequest.objects.filter(to_user=user_currently_clicked_on).count())
         if PalRequest.objects.filter(to_user=user_currently_clicked_on).count() == 1:
             button_status= 'pal_request_sent'
+    else:
+        button_status = 'pal'
     
 
     context = {

@@ -1,8 +1,8 @@
 {% extends "core/base.html" %} {% block content %}
 <main role="main" class="container">
   <div class="starter-template">
-    <h1 class="text-center my-5">Profile</h1>
-    <h1 class="my-5">Hi, @{{ request.user }}</h1>
+    <h1 class="text-center my-5 display-2">Profile</h1>
+    <h1 class="my-5 display-4">Hi, @{{ request.user }}</h1>
     <!-- 
       If this is the profile of the currently-logged in django user, (i.e if logged-in user == user we clicked on), 
       show the pals, sent requests and received requests(for received requests, show Accept and ignore buttons) 
@@ -73,7 +73,9 @@
     <h1>User profile for other user: {{ user_currently_clicked_on }}</h1>
     <!-- profile is not currently-logged-in user's pal -->
     {% if button_status == 'not_a_pal' %}
-    <p>not a pal</p>
+    <p class="lead">
+      {{ user_currently_clicked_on }} is not your pal. Send Request?
+    </p>
     <small
       ><a
         class="btn btn-primary"
@@ -83,7 +85,7 @@
     >
 
     {% elif button_status == 'pal_request_sent' %}
-
+    <p class="lead">Already Sent request to {{ user_currently_clicked_on }}</p>
     <small
       ><a
         class="btn btn-warning"
@@ -91,6 +93,12 @@
         >Cancel Request</a
       ></small
     >
+
+    {% elif button_status == 'pal' %}
+    <p class="lead">
+      You and {{ user_currently_clicked_on }} are <strong>Friends</strong>.
+      All's Good :)
+    </p>
     {% endif %}
 
     <!-- End main if -->
