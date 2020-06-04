@@ -1,22 +1,30 @@
-{% extends "core/base.html" %} {% block content %}
+{% extends "core/base.html" %}
+
+<!-- content -->
+{% block content %}
 <main role="main" class="container">
   <div class="starter-template">
-    <h1 class="my-5 text-center display-2">All Users</h1>
-    <h1 class="my-5 display-4">Hi, @{{ request.user }}</h1>
-    <p class="lead">
-    <ul class="jumbotron">
-        {% for profile in user_profiles %}
-        <li class="lead">
-            <!-- profile returns self.user.username -->
-            <a href="{{profile.get_absolute_url}}" class="lead">{{ profile }}</a>  
-        </li>
-        {% endfor %}
-    </ul>
-    </p>
+    <h1 class="mt-3 text-center display-2">Home</h1>
+    {% if request.user == 'AnonymousUser' %}
+    <h1 class="my-3 text-center display-4">Hi, Guest</h1>
+    {% else %}
+    <h1 class="my-3 text-center display-4">Hi, @{{ request.user }}</h1>
+    {% endif %}
+
+    <div class="jumbotron lead my-5 text-center">
+      <h1 class="display-4">Welcome to Django Pals</h1>
+
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'get_users_list' %}" class="btn btn-primary lead m-3 px-5"
+        >Users</a
+      >
+      <a href="/accounts/logout" class="btn btn-danger lead m-3 px-5">Logout</a>
+      {% else %}
+      <a href="/accounts/login" class="btn btn-danger lead m-3 px-5">Login</a>
+      {% endif %}
+    </div>
   </div>
 </main>
 <!-- /.container -->
 
-
-
-{% endblock %}
+{% endblock content %}

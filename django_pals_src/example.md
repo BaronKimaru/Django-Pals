@@ -20,6 +20,10 @@
 
 ### Homepage
 
+![image](https://user-images.githubusercontent.com/16536231/83728721-6415d100-a64f-11ea-960b-3c94f9672cf2.png)
+
+### Users Page
+
 ![image](https://user-images.githubusercontent.com/16536231/83667259-c8e11500-a5d6-11ea-8e12-846743227568.png)
 
 ### profile page for currently logged in user

@@ -3,21 +3,24 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from .models import Profile, PalRequest
 from django.contrib.auth.decorators import login_required
-from django.views.generic.list import View, ListView
+from django.views.generic import TemplateView, View, ListView
 
 User = get_user_model()
 
 # Create your views here.
 
+class HomePageView(TemplateView):
+    template_name = "core/home.html"
+
 # @login_required
-class ProfileListView(View):
+class UserProfileListView(View):
     def get(self, request, *args, **kwargs):
         user_profiles_with_logged_in_user = Profile.objects.all()
         user_profiles_without_logged_in_user = Profile.objects.all().exclude(user=request.user)
         context = {
             'user_profiles': user_profiles_without_logged_in_user 
         }
-        return render(request, "core/home.html", context)
+        return render(request, "core/users.html", context)
 
 
 def send_pal_request(request, id):
